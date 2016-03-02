@@ -4,10 +4,7 @@ import com.dstvdm.bamf.model.Person;
 import com.dstvdm.bamf.model.Team;
 import com.dstvdm.bamf.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,6 +36,11 @@ public class PersonController {
     @RequestMapping("/findByTeam")
     public List<Person> findByAge(@RequestParam Team team) {
         return repository.findByTeam(team);
+    }
+
+    @RequestMapping(method = RequestMethod.POST)
+    public void addPerson(@RequestBody Person person) {
+        repository.save(person);
     }
 
 
