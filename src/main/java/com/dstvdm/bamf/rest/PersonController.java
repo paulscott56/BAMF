@@ -39,8 +39,8 @@ public class PersonController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public void addPerson(@RequestBody Person person) {
-        repository.save(person);
+    public Person addPerson(@RequestBody Person person) {
+        return repository.save(person);
     }
 
 

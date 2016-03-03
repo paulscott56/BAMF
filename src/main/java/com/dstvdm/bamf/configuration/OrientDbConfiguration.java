@@ -1,4 +1,4 @@
-package com.dstvdm.bamf.Configuration;
+package com.dstvdm.bamf.configuration;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,7 +29,7 @@ public class OrientDbConfiguration {
     public OrientObjectDatabaseFactory factory() {
         OrientObjectDatabaseFactory factory = new OrientObjectDatabaseFactory();
 
-        factory.setUrl("plocal:test/test");
+        factory.setUrl("remote:localhost/bamf");
         factory.setUsername("admin");
         factory.setPassword("admin");
 
