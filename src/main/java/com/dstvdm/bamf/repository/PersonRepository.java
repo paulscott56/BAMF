@@ -40,6 +40,10 @@ public class PersonRepository  {
     public Iterable<Vertex> findByFirstName(String firstName) {
     	return graph.getVertices("firstName", firstName); 
     }
+    
+    public Iterable<Vertex> findByLastName(String lastName) {
+    	return graph.getVertices("lastName", lastName); 
+    }
 	
     public List<Person> findByTeam(Team team) {
 		return null;

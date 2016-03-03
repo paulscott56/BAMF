@@ -30,10 +30,10 @@ public class PersonController {
         return repository.findByFirstName(firstName);
     }
 
-//    @RequestMapping("/findByLastName")
-//    public List<Person> findByLastName(@RequestParam String lastName) {
-//        return repository.findByLastName(lastName);
-//    }
+    @RequestMapping("/findByLastName")
+    public Iterable<Vertex> findByLastName(@RequestParam String lastName) {
+        return repository.findByLastName(lastName);
+    }
 
     @RequestMapping("/findByTeam")
     public List<Person> findByAge(@RequestParam Team team) {
