@@ -3,6 +3,8 @@ package com.dstvdm.bamf.rest;
 import com.dstvdm.bamf.model.Person;
 import com.dstvdm.bamf.model.Team;
 import com.dstvdm.bamf.repository.PersonRepository;
+import com.tinkerpop.blueprints.Vertex;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,20 +20,20 @@ public class PersonController {
     @Autowired
     private PersonRepository repository;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Person> findAllPersons() {
-        return repository.findAll();
-    }
+//    @RequestMapping(method = RequestMethod.GET)
+//    public List<Person> findAllPersons() {
+//        return repository.findAll();
+//    }
 
     @RequestMapping("/findByFirstName")
-    public List<Person> findByFirstName(@RequestParam String firstName) {
+    public Iterable<Vertex> findByFirstName(@RequestParam String firstName) {
         return repository.findByFirstName(firstName);
     }
 
-    @RequestMapping("/findByLastName")
-    public List<Person> findByLastName(@RequestParam String lastName) {
-        return repository.findByLastName(lastName);
-    }
+//    @RequestMapping("/findByLastName")
+//    public List<Person> findByLastName(@RequestParam String lastName) {
+//        return repository.findByLastName(lastName);
+//    }
 
     @RequestMapping("/findByTeam")
     public List<Person> findByAge(@RequestParam Team team) {
@@ -39,8 +41,8 @@ public class PersonController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public Person addPerson(@RequestBody Person person) {
-        return repository.save(person);
+    public String addPerson(@RequestBody Person person) {
+        return repository.addPerson(person);
     }
 
 

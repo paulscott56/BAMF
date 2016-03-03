@@ -11,6 +11,12 @@ import org.springframework.data.orient.object.repository.support.OrientObjectRep
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.orientechnologies.orient.client.remote.OServerAdmin;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientGraphFactory;
+
+import java.io.IOException;
+
 import javax.annotation.PostConstruct;
 
 /**
@@ -27,7 +33,7 @@ public class OrientDbConfiguration {
 
     @Bean
     public OrientObjectDatabaseFactory factory() {
-        OrientObjectDatabaseFactory factory = new OrientObjectDatabaseFactory();
+    	OrientObjectDatabaseFactory factory = new OrientObjectDatabaseFactory();
 
         factory.setUrl("remote:localhost/bamf");
         factory.setUsername("admin");
@@ -41,15 +47,31 @@ public class OrientDbConfiguration {
         return new OrientTransactionManager(factory());
     }
 
+//    @Bean
+//    public OrientObjectTemplate objectTemplate() {
+//        return new OrientObjectTemplate(factory());
+//    }
+    
     @Bean
-    public OrientObjectTemplate objectTemplate() {
-        return new OrientObjectTemplate(factory());
+    public OrientGraph graphTemplate() {
+    	String url = "remote:localhost/bamf";
+    	try {
+			OServerAdmin serverAdmin = new OServerAdmin(url).connect("root", "hello");
+			if(serverAdmin.existsDatabase()) {
+				OrientGraphFactory factory = new OrientGraphFactory(url);
+				return factory.getTx();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println("DB does not exist");
+		}
+		return null;
     }
 
-    @PostConstruct
-    @Transactional
-    public void registerEntities() {
-        factory.db().getEntityManager().registerEntityClasses("com.dstvdm.bamf.model");
-    }
+//    @PostConstruct
+//    @Transactional
+//    public void registerEntities() {
+//        factory.db().getEntityManager().registerEntityClasses("com.dstvdm.bamf.model");
+//    }
 
 }

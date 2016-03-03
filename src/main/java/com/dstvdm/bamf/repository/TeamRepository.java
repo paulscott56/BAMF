@@ -2,6 +2,7 @@ package com.dstvdm.bamf.repository;
 
 import com.dstvdm.bamf.model.Team;
 import org.springframework.data.orient.commons.repository.annotation.Query;
+import org.springframework.data.orient.graph.repository.OrientGraphRepository;
 import org.springframework.data.orient.object.repository.OrientObjectRepository;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 /**
  * Created by pscot on 3/2/2016.
  */
-public interface TeamRepository extends OrientObjectRepository<Team> {
+public interface TeamRepository extends OrientGraphRepository<Team> {
 
     List<Team> findByTeamName(String teamName);
 

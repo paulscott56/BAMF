@@ -38,7 +38,15 @@ public class Person {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
+
+	public String getLastName() {
         return lastName;
     }
 

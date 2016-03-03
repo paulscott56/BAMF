@@ -22,11 +22,6 @@ public class Team {
 
     private String teamDescription;
 
-    private List<Person> teamMembers;
-
-    private Location teamLocation;
-
-
     public String getId() {
         return id;
     }
@@ -59,19 +54,5 @@ public class Team {
         this.teamDescription = teamDescription;
     }
 
-    public List<Person> getTeamMembers() {
-        return teamMembers;
-    }
-
-    public void setTeamMembers(List<Person> teamMembers) {
-        this.teamMembers = teamMembers;
-    }
-
-    public Location getTeamLocation() {
-        return teamLocation;
-    }
-
-    public void setTeamLocation(Location teamLocation) {
-        this.teamLocation = teamLocation;
-    }
+    
 }
